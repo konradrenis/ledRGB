@@ -11,18 +11,26 @@ public:
 
     void tick();
 
-    void setColor(int red, int green, int blue);
+    void color(int red, int green, int blue);
     void setBrightness(int _brightness);
-    void changeColor(int red, int green, int blue, int time);
+    void fade(int red, int green, int blue, int time);
+    void turnOff();
     
 
 	static bool COMMON_ANODE;
 	static bool COMMON_CATHODE;
 
+    int actualMode;
+    bool fadeDone = false;
+
 private:
 
-    void calculateActualColor();
+    void calculateFadeColor();
     void updateColor();
+    void setTarget(int red, int green, int blue);
+    void setColor(int red, int green, int blue);
+
+    int mode;
 
     int redPin;
     int greenPin;
