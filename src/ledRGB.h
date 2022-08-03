@@ -6,53 +6,53 @@
 class ledRGB
 {
 
+//Functions
 public:
     ledRGB(int redPin, int greenPin, int bluePin, bool common, int _tickTime);
 
     void tick();
-
     void color(int red, int green, int blue);
-    void setBrightness(int _brightness);
-    void fade(int red, int green, int blue, int time);
+    void fade(int red, int green, int blue,unsigned int time);
     void turnOff();
-    
-
-	static bool COMMON_ANODE;
-	static bool COMMON_CATHODE;
-
-    int actualMode;
-    bool fadeDone = false;
+    int getMode();
+    bool getFadeDone();
 
 private:
-
     void calculateFadeColor();
     void updateColor();
     void setTarget(int red, int green, int blue);
     void setColor(int red, int green, int blue);
 
+//Variables
+public:
+	static bool COMMON_ANODE;
+	static bool COMMON_CATHODE;
+    
+private:
     int mode;
+
+    bool commonAnode;
+
+    bool fadeDone = false;
 
     int redPin;
     int greenPin;
     int bluePin;
 
-    bool commonAnode;
-
     float actualRedValue;
     float actualGreenValue;
     float actualBlueValue;
-    int brightness;
-
-    float redCorrector;
-    float greenCorrector;
-    float blueCorrector;
 
     float targetRedValue;
     float targetGreenValue;
     float targetBlueValue;
 
+    float redCorrector;
+    float greenCorrector;
+    float blueCorrector;
+
     unsigned long lastTickTime;
-    int tickTime;
+    unsigned int tickTime;
 	
 };
 
