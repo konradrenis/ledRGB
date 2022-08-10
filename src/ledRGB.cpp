@@ -6,10 +6,10 @@
 #define MODE2_ONE_COLOR 1
 #define MODE3_FADE 2
 
-bool ledRGB::COMMON_ANODE = true;
-bool ledRGB::COMMON_CATHODE = false;
+bool LedRGB::COMMON_ANODE = true;
+bool LedRGB::COMMON_CATHODE = false;
 
-ledRGB::ledRGB(int _redPin, int _greenPin, int _bluePin, bool common, int _tickTime) {
+LedRGB::LedRGB(int _redPin, int _greenPin, int _bluePin, bool common, int _tickTime) {
     
     //Turn of diode at start
     turnOff();
@@ -45,7 +45,7 @@ ledRGB::ledRGB(int _redPin, int _greenPin, int _bluePin, bool common, int _tickT
 }
 
 //Tick for diode color update
-void ledRGB::tick()
+void LedRGB::tick()
 {
     if(!mode)
     {
@@ -73,14 +73,14 @@ void ledRGB::tick()
 }
 
 //Turn of diode - mode 1
-void ledRGB::turnOff()
+void LedRGB::turnOff()
 {
     mode = MODE1_OFF;
     setColor(0,0,0);
 }
 
 //Set color of diode - mode 2
-void ledRGB::color(int red, int green, int blue)
+void LedRGB::color(int red, int green, int blue)
 {
     mode = MODE2_ONE_COLOR;
     setColor(red, green, blue);
@@ -89,7 +89,7 @@ void ledRGB::color(int red, int green, int blue)
 }
 
 //Smooth transition from the current color to the given - mode 3
-void ledRGB::fade(int red, int green, int blue, unsigned int time)
+void LedRGB::fade(int red, int green, int blue, unsigned int time)
 {
     mode = MODE3_FADE;
 
@@ -108,17 +108,17 @@ void ledRGB::fade(int red, int green, int blue, unsigned int time)
     blueCorrector = (targetBlueValue-actualBlueValue)/steps;
 }
 
-int ledRGB::getMode()
+int LedRGB::getMode()
 {
     return mode;
 }
 
-bool ledRGB::getFadeDone()
+bool LedRGB::getFadeDone()
 {
     return fadeDone;
 }
 
-void ledRGB::setColor(int red, int green, int blue)
+void LedRGB::setColor(int red, int green, int blue)
 {
     if (red > 255) red = 255;
     if (red < 0) red = 0;
@@ -146,7 +146,7 @@ void ledRGB::setColor(int red, int green, int blue)
     }
 }
 
-void ledRGB::setTarget(int red, int green, int blue)
+void LedRGB::setTarget(int red, int green, int blue)
 {
     if (red > 255) red = 255;
     if (red < 0) red = 0;
@@ -172,7 +172,7 @@ void ledRGB::setTarget(int red, int green, int blue)
 }
 
 
-void ledRGB::updateColor()
+void LedRGB::updateColor()
 {
     analogWrite(redPin,(int)actualRedValue);
     analogWrite(greenPin,(int)actualGreenValue);
@@ -180,7 +180,7 @@ void ledRGB::updateColor()
 
 }
 
-void ledRGB::calculateFadeColor()
+void LedRGB::calculateFadeColor()
 {
     if(targetRedValue == actualRedValue 
     && targetGreenValue == actualGreenValue

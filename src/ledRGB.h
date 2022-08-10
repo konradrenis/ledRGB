@@ -3,12 +3,11 @@
 
 #include "Arduino.h"
 
-class ledRGB
+class LedRGB
 {
 
-//Functions
 public:
-    ledRGB(int redPin, int greenPin, int bluePin, bool common, int _tickTime);
+    LedRGB(int redPin, int greenPin, int bluePin, bool common, int _tickTime);
 
     void tick();
     void color(int red, int green, int blue);
@@ -23,7 +22,6 @@ private:
     void setTarget(int red, int green, int blue);
     void setColor(int red, int green, int blue);
 
-//Variables
 public:
 	static bool COMMON_ANODE;
 	static bool COMMON_CATHODE;
